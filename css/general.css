@@ -1,0 +1,618 @@
+@font-face {
+    font-family: Futura;
+    src: url(fonts/futura/futura_medium.ttf);
+    src: url('fonts/futura/futura_medium.ttf') format('truetype'),
+       url('fonts/futura/futurastd.woff') format('woff'),
+       url('fonts/futura/futurastd.ttf')  format('truetype'),
+       url('fonts/futura/futurastd.eot') format('eot');
+}
+
+
+body, html{
+
+    width: 100%;
+    height: 100%;
+    /*height: auto;*/
+    padding: 0px;
+    margin: 0px;
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif !important;
+}
+
+div, h1, h2, h3, h4, h5, h6, p, span, input, label{
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif !important;
+}
+
+.full_page{
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 0px;
+    margin: 0px;
+}
+
+.border_box{
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.font_05em{
+    font-size: 0.5em !important;
+}
+.font_1em{
+    font-size: 1em !important;
+}
+.font_2em{
+    font-size: 2em !important;
+}
+.font_3em{
+    font-size: 3em !important;
+}
+
+.hidden{
+        display: none
+    }
+    .error{
+        border: 4px solid red !important;
+    }
+    .success{
+        border: 4px solid green !important;
+    }
+    
+    .no_select{
+        -webkit-user-select: none;  /* Chrome all / Safari all */
+        -moz-user-select: none;     /* Firefox all */
+        -ms-user-select: none;      /* IE 10+ */
+    }
+
+    .selected{
+        font-style: italic;
+    }
+    
+    
+    input[type="radio"] + label span {
+        display:inline-block;
+        /*width:25px;
+        height:25px;
+        background-color: white;*/
+    }
+    input[type="radio"]:checked + label span {
+        color: black;
+    }
+    input[type="radio"]:checked + label .mc_o {
+        color: black;
+        background-color: white !important;
+    }
+    input[type="radio"]:checked + .tf_a, .mc_a {
+        background-color: white !important;
+    }
+
+    .submit_btn{
+        color: black;
+        text-align: center;
+        width: 92%;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-left: auto;
+        margin-right: auto;
+        
+        background-color: white;
+        display: block;
+        text-shadow:2px 2px 3px rgba(0, 0, 0, 0.5);
+        -webkit-user-select: none;  /* Chrome all / Safari all */
+        -moz-user-select: none;     /* Firefox all */
+        -ms-user-select: none;      /* IE 10+ */
+        cursor: pointer;
+    }
+    .reset_btn{
+        color: black;
+        text-align: center;
+        width: 92%;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-left: auto;
+        margin-right: auto;
+        
+        background-color: white;
+        display: block;
+        text-shadow:2px 2px 3px rgba(0, 0, 0, 0.5);
+        -webkit-user-select: none;  /* Chrome all / Safari all */
+        -moz-user-select: none;     /* Firefox all */
+        -ms-user-select: none;      /* IE 10+ */
+        cursor: pointer;
+    }
+
+
+/* Test 1 */
+/*
+body, html{
+          background: -webkit-linear-gradient(left, rgb(40, 56, 152) , rgb(0, 0, 20));
+          background: -o-linear-gradient(right, rgb(40, 56, 152), rgb(0, 0, 20));
+          background: -moz-linear-gradient(right, rgb(40, 56, 152), rgb(0, 0, 20));
+          background: linear-gradient(to right, rgb(40, 56, 152) , rgb(0, 0, 20));
+        }
+        #test_title{
+            width: 92%;
+            margin-left: auto;
+            margin-right: auto;
+            color: white;
+            text-shadow: -1px 0 rgb(239, 118, 61), 0 1px rgb(239, 118, 61), 1px 0 rgb(239, 118, 61), 0 -1px rgb(239, 118, 61);
+            text-align: center;
+            background-color: rgb(23, 14, 33);
+            padding: 20px;
+            border: 2px solid rgb(81, 96, 225);
+        }
+        
+        .q_a_container{
+            width: 92%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            vertical-align: middle;
+        }
+        
+        .sn_q{
+            width: 60%;
+            display: inline-block;
+            color: white;
+            padding: 20px;
+            background-color: rgb(23, 14, 33);
+            border: 2px solid rgb(81, 96, 225);
+            vertical-align: middle;
+        }
+        .sn_a{
+            width: 14%;
+            display: inline-block;
+            color: white;
+            text-decoration: underline;
+            text-align: center;
+            padding: 10px;
+            margin: auto 2% auto 2%;
+            background-color: rgb(132, 132, 132);
+            border-radius: 5px;
+            border: 4px solid rgb(81, 96, 225);
+            vertical-align: middle;
+        }
+        .correct_answer{
+            width: 14%;
+            display: inline-block;
+            color: white;
+            padding: 10px;
+            margin: auto 2% auto 2%;
+            background-color: rgb(23, 14, 33);
+            border: 2px solid rgb(81, 96, 225);
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+        .reset_border{
+            border: 2px solid rgb(81, 96, 225);
+        }
+        .submit_border{
+            border: 2px solid rgb(81, 96, 225);
+        }
+        
+        @media only screen 
+        and (max-width : 480px) {
+            
+            #test_title{
+                padding: 5px;
+                font-size: 120% !important;
+            }
+            
+            .q_a_container{
+                width: 92%;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                font-size: 80%;
+            }
+            
+            .sn_q{
+                padding: 5px;
+                font-size: 80%;
+            }
+            .sn_a{
+                padding: 5px;
+                margin: auto;
+                font-size: 80%;
+            }
+            
+            .correct_answer{
+                width: 14%;
+                padding: 2px;
+                margin: auto;
+                border: 1px solid rgb(81, 96, 225);
+                font-size: 80%;
+            }
+            
+            
+        }
+*/
+/* Test 2 */
+/*
+body, html{
+          background: -webkit-linear-gradient(left, rgb(248, 132, 59) , rgb(0, 0, 20));
+          background: -o-linear-gradient(right, rgb(248, 132, 59), rgb(0, 0, 20));
+          background: -moz-linear-gradient(right, rgb(248, 132, 59), rgb(0, 0, 20));
+          background: linear-gradient(to right, rgb(248, 132, 59), rgb(0, 0, 20));
+        }
+        #test_title{
+            width: 92%;
+            margin-left: auto;
+            margin-right: auto;
+            color: white;
+            text-shadow: -1px 0 rgb(239, 118, 61), 0 1px rgb(239, 118, 61), 1px 0 rgb(239, 118, 61), 0 -1px rgb(239, 118, 61);
+            text-align: center;
+            background-color: rgb(23, 14, 33);
+            padding: 20px;
+            border: 2px solid rgb(241, 118, 59);
+        }
+        #test_2_list{
+            width: 92%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .q_a_container{
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            vertical-align: middle;
+        }
+        
+        .tf_q{
+            width: 68%;
+            display: inline-block;
+            color: white;
+            position: relative;
+            padding-bottom: 14%;
+            background-color: rgb(23, 14, 33);
+            border: 2px solid rgb(241, 118, 59);
+            vertical-align: middle;
+        }
+        .tf_a{
+            position: relative;
+            width: 14%;
+            padding-bottom: 14%;
+            display: inline-block;
+            color: white;
+            font-size: 1em;
+            text-decoration: underline;
+            text-align: center;
+            margin: auto 0px auto 1%;
+            background-color: rgb(23, 14, 33);
+            border: 2px solid rgb(241, 118, 59);
+            vertical-align: middle;
+            float: right;
+        }
+        .abs_pos{
+            position: absolute;
+            height: 2em;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right:0px;
+            margin: auto;
+            line-height: 1;
+        }
+        .abs_pos_q{
+            position: relative;
+            padding: 10px;
+        }
+
+        .make_absolute{
+            position: absolute !important;
+            top: 0px !important;
+            left: 0px !important;
+            bottom: 0px !important;
+            right: 0px !important;
+            margin: auto !important;
+        }
+
+        .checked{
+            background-color: white;
+            color: black;
+        }
+        
+        .reset_border{
+            border: 2px solid rgb(241, 118, 59);
+        }
+        .submit_border{
+            border: 2px solid rgb(241, 118, 59);
+        }
+        
+        @media screen and (min-width: 640px) {
+            
+            .tf_a{
+                font-size: 2em;
+            }
+            .abs_pos{
+                height: 1em;
+            }
+            .abs_pos_q{
+                padding: 5px;
+            }
+        }
+        
+        @media only screen 
+        and (max-width : 480px) {
+            
+            body{
+                font-size: 80%;
+            }
+            
+            .tf_a{
+                font-size: 2em;
+            }
+            .abs_pos{
+                height: 1em;
+            }
+            .abs_pos_q{
+                padding: 5px;
+            }
+            
+            #test_title{
+                padding: 5px;
+                font-size: 120% !important;
+            }
+            
+            .q_a_container{
+                width: 92%;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                font-size: 80%;
+            }
+            
+            .tf_q{
+            }
+            .tf_a{
+            }
+            
+        }
+*/
+/* Test 3 */
+/*
+body, html{
+          background: -webkit-linear-gradient(left, rgb(197, 25, 44) , rgb(0, 0, 20));
+          background: -o-linear-gradient(right, rgb(197, 25, 44), rgb(0, 0, 20));
+          background: -moz-linear-gradient(right, rgb(197, 25, 44), rgb(0, 0, 20));
+          background: linear-gradient(to right, rgb(197, 25, 44), rgb(0, 0, 20));
+        }
+        #test_title{
+            width: 92%;
+            margin-left: auto;
+            margin-right: auto;
+            color: white;
+            text-shadow: -1px 0 rgb(239, 118, 61), 0 1px rgb(239, 118, 61), 1px 0 rgb(239, 118, 61), 0 -1px rgb(239, 118, 61);
+            text-align: center;
+            background-color: rgb(23, 14, 33);
+            padding: 20px;
+            border: 2px solid rgb(241, 118, 59);
+        }
+        
+        .q_a_container{
+            width: 92%;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            height: auto;
+        }
+        
+        .mt_q{
+            position: relative;
+            left: 0px;
+            width: 100%;
+            display: block;
+            color: white;
+            padding: 20px;
+            margin: 10px 0 10px 0;
+            background-color: rgb(23, 14, 33);
+            border: 2px solid rgb(241, 118, 59);
+        }
+        .mt_a{
+            position: relative;
+            right: 0px;
+            width: 100%;
+            display: block;
+            color: white;
+            padding: 20px;
+            margin: 10px 0 10px 0;
+            background-color: rgb(23, 14, 33);
+            border: 2px solid rgb(241, 118, 59);
+        }
+        
+        .reset_border{
+            border: 2px solid rgb(241, 118, 59);
+            background-color: rgb(23, 14, 33) !important;
+            color: white !important;
+            width: 100% !important;
+        }
+        .submit_border{
+            border: 2px solid rgb(241, 118, 59);
+            background-color: rgb(23, 14, 33) !important;
+            color: white !important;
+            width: 100% !important;
+        }
+        
+        #plumb_container{
+            position: relative;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .endpoint{
+            background-color: red;
+        }
+        
+        #column_left{
+            width: 30%;
+            height: auto;
+            margin: 0px !important;
+            padding: 0px !important;
+            position: absolute;
+            left: 0%;
+            display: inline-block;
+        }
+        #column_middle{
+            width: 30%;
+            height: 100%;
+            margin: 0px !important;
+            padding: 0px !important;
+            position: absolute;
+            left: 30%;
+            display: inline-block;
+        }
+        #column_right{
+            width: 30%;
+            height: auto;
+            margin: 0px !important;
+            padding: 0px !important;
+            position: absolute;
+            right: 0%;
+            display: inline-block;
+        }
+        
+        .target_rect{
+            opacity: 0;
+        }
+        
+        @media only screen 
+        and (max-width : 480px) {
+            
+            body{
+                font-size: 80%;
+            }
+            
+            .mt_q{
+                padding: 5px;
+                margin: 5px 0 5px 0;
+            }
+            .mt_a{
+                padding: 5px;
+                margin: 5px 0 5px 0;
+            }
+            
+            #column_left{
+                width: 30%;
+                position: absolute;
+                left: 0%;
+            }
+            #column_middle{
+                width: 20%;
+                position: absolute;
+                left: 30%;
+            }
+            #column_right{
+                width: 30%;
+                position: absolute;
+                right: 0%;
+            }
+            
+        }
+
+*/
+/* Test 4 */
+/*
+body, html{
+          background: -webkit-linear-gradient(left, rgb(44, 199, 203), rgb(0, 0, 20));
+          background: -o-linear-gradient(right, rgb(44, 199, 203), rgb(0, 0, 20));
+          background: -moz-linear-gradient(right, rgb(44, 199, 203), rgb(0, 0, 20));
+          background: linear-gradient(to right, rgb(44, 199, 203), rgb(0, 0, 20));
+        }
+        #test_title{
+            width: 92%;
+            margin-left: auto;
+            margin-right: auto;
+            color: white;
+            text-shadow: -1px 0 rgb(239, 118, 61), 0 1px rgb(239, 118, 61), 1px 0 rgb(239, 118, 61), 0 -1px rgb(239, 118, 61);
+            text-align: center;
+            background-color: rgb(23, 14, 33);
+            padding: 20px;
+            border: 2px solid rgb(122, 215, 212);
+        }
+        
+        .q_a_container{
+            width: 92%;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            height: auto;
+        }
+        
+        .q_block{
+            background-color: rgb(23, 14, 33);
+            border: 2px solid rgb(122, 215, 212);
+            margin: 10px auto 10px auto;
+        }
+        .q_text{
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .mc_a{
+            width: 45%;
+            margin: 1.5%;
+            border: 2px solid rgb(122, 215, 212);
+            display: inline-block;
+            color: white;
+            vertical-align: middle;
+        }
+        
+        .mc_a_container{
+            position: relative;
+            height: auto;
+            width: 100%;
+        }
+        .mc_o{
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            padding: 5px;
+        }
+        
+        .label_expand{
+            width: 100%;
+            height: 100%;
+            display: block;
+            background-color: rgb(23, 14, 33);
+        }
+        
+        .reset_border{
+            border: 2px solid rgb(122, 215, 212);
+            width: 100% !important;
+        }
+        .submit_border{
+            border: 2px solid rgb(122, 215, 212);
+            width: 100% !important;
+        }
+        .letter{
+            float: left;
+        }
+        
+        @media only screen 
+        and (max-width : 480px) {
+            
+            body{
+                font-size: 80%;
+            }
+            
+            .mc_a{
+                width: 45%;
+                margin: 1%;
+                border: 2px solid rgb(122, 215, 212);
+                display: inline-block;
+                color: white;
+            }
+            
+        }
+*/
+
+
+

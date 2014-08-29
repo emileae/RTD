@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Seamonster</title>
+<!-- include viewport meta tags -->
+    <link rel="stylesheet" type="text/css" href="css/general.css">
+    <link rel="stylesheet" type="text/css" href="css/test3.css">
+    <meta name="viewport" content="width=device-width" />
+    
+    <style>
+        body, html{
+          background: -webkit-linear-gradient(left, rgb(197, 25, 44) , rgb(0, 0, 20)); /* For Safari 5.1 to 6.0 */
+          background: -o-linear-gradient(right, rgb(197, 25, 44), rgb(0, 0, 20)); /* For Opera 11.1 to 12.0 */
+          background: -moz-linear-gradient(right, rgb(197, 25, 44), rgb(0, 0, 20)); /* For Firefox 3.6 to 15 */
+          background: linear-gradient(to right, rgb(197, 25, 44), rgb(0, 0, 20)); /* Standard syntax */
+        }
+        #test_title{
+            width: 92%;
+            margin-left: auto;
+            margin-right: auto;
+            color: white;
+            text-shadow: -1px 0 rgb(239, 118, 61), 0 1px rgb(239, 118, 61), 1px 0 rgb(239, 118, 61), 0 -1px rgb(239, 118, 61);
+            text-align: center;
+            background-color: rgb(23, 14, 33);
+            padding: 20px;
+            border: 2px solid rgb(241, 118, 59);
+        }
+        
+        .q_a_container{
+            width: 92%;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            height: auto;
+        }
+        
+        .mt_q{
+            position: relative;
+            left: 0px;
+            width: 100%;
+            display: block;
+            color: white;
+            padding: 20px;
+            margin: 10px 0 10px 0;
+            background-color: rgb(23, 14, 33);
+            border: 2px solid rgb(241, 118, 59);
+        }
+        .mt_a{
+            position: relative;
+            right: 0px;
+            width: 100%;
+            display: block;
+            color: white;
+            padding: 20px;
+            margin: 10px 0 10px 0;
+            background-color: rgb(23, 14, 33);
+            border: 2px solid rgb(241, 118, 59);
+        }
+        
+        .reset_border{
+            border: 2px solid rgb(241, 118, 59);
+            background-color: rgb(23, 14, 33) !important;
+            color: white !important;
+            width: 100% !important;
+        }
+        .submit_border{
+            border: 2px solid rgb(241, 118, 59);
+            background-color: rgb(23, 14, 33) !important;
+            color: white !important;
+            width: 100% !important;
+        }
+        
+        #plumb_container{
+            position: relative;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        /* endpoint styles */
+        .endpoint{
+            background-color: red;
+        }
+        
+        #column_left{
+            width: 30%;
+            height: auto;
+            margin: 0px !important;
+            padding: 0px !important;
+            position: absolute;
+            left: 0%;
+            display: inline-block;
+        }
+        #column_middle{
+            width: 30%;
+            height: 100%;
+            margin: 0px !important;
+            padding: 0px !important;
+            position: absolute;
+            left: 30%;
+            display: inline-block;
+        }
+        #column_right{
+            width: 30%;
+            height: auto;
+            margin: 0px !important;
+            padding: 0px !important;
+            position: absolute;
+            right: 0%;
+            display: inline-block;
+        }
+        
+        .target_rect{
+            opacity: 0;
+        }
+        
+        @media only screen 
+        /*and (min-width : 320px) */
+        and (max-width : 480px) {
+            
+            body{
+                font-size: 80%;
+            }
+            
+            .mt_q{
+                padding: 5px;
+                margin: 5px 0 5px 0;
+            }
+            .mt_a{
+                padding: 5px;
+                margin: 5px 0 5px 0;
+            }
+            
+            #column_left{
+                width: 30%;
+                position: absolute;
+                left: 0%;
+            }
+            #column_middle{
+                width: 20%;
+                position: absolute;
+                left: 30%;
+            }
+            #column_right{
+                width: 30%;
+                position: absolute;
+                right: 0%;
+            }
+            
+        }
+        
+    </style>
+    
+</head>
+
+<body>
+    
+    <div id="content3" class="full_page bg"></div>
+    
+    <script id="test_3" type="text/x-handlebars-template">
+        <div id="test_title" class="border_box font_3em">
+            Match the Term to the Definition<br/> 
+            <span class="font_05em hide_small">by dragging across to connect the dots</span>
+            <span class="font_05em hide_large">by first tapping the term in the left column and then its definition in the right column</span>
+        </div>
+        <div id="plumb_container" class="q_a_container no_select">
+            <div id="column_left" class="border_box">
+                {{#questions}}
+                    <div id="T3Q{{@index}}" class="T3Q question_drag left mt_q border_box no_select" data-question="{{q}}">{{q}}</div>
+                {{/questions}}
+            </div>
+            <div id="column_middle" class="border_box no_select"></div>
+            <div id="column_right" class="border_box no_select">
+                {{#options}}
+                    <div id="T3O{{@index}}" class="T3O answer_drag right mt_a border_box no_select" data-answer=""  data-question="" data-answered="no">{{o}}</div>
+                {{/options}}
+            </div>
+            
+        </div>
+        <div class="q_a_container">
+            <input id="ric_t3" type="hidden" value="{{ric}}" />
+            <div id="submit_test_3" class="submit_btn font_2em submit_border">Submit</div>
+            <div id="reset_test_3" class="reset_btn font_2em reset_border">Reset</div>
+        </div>
+    </script>
+    
+    <script type="text/javascript" src="libs/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="libs/handlebars.js"></script>
+    <script type="text/javascript" src="js/renderTemplate.js"></script>
+    <script type="text/javascript" src="js/handlebars_helpers.js"></script>
+    <script type="text/javascript" src="libs/dom.jsPlumb-1.6.2-min.js"></script>
+    <script type="text/javascript" src="tests/reset_data.js"></script>
+    <script type="text/javascript" src="tests/test_data.js"></script>
+    
+    
+    
+    <script type="text/javascript">
+
+        // sort out layout
+
+        function resize_height(){
+            var cl = $("#column_left").outerHeight();
+            var cr = $("#column_right").outerHeight();
+
+            var highest = "";
+
+            if (Number(cl) > Number(cr)){
+                highest = Number(cl)+50;
+            }else{
+                highest = Number(cr)+50;
+            };
+
+            $("#plumb_container").css("height", highest+"px");
+
+            //js_plumb();
+            setTimeout(function(){js_plumb()}, 100);
+
+        };
+
+        // TEST 3 -----------------------
+        
+        $('body').on('mouseup', '#submit_test_3', function(){
+            var ric = $("#ric_t3").val();
+            if (ric != "T"){
+                var questions = JSON.parse(localStorage.Test3)["questions"];
+                
+                $(".T3O").each(function(){
+                    var $this = $(this);
+                    var id= $this.attr("id");
+                    var q = $this.data("answer");
+                    
+                    var correct_answer = "";
+                    
+                    for (var i=0; i<questions.length; i++){
+                        if(questions[i]["id"] == q){
+                            correct_answer = questions[i]["a"];
+                        };
+                    };
+                    
+                    if ( correct_answer == id ){
+                        var this_connection = jsPlumb.getConnections({
+                                                    target:id
+                                                });
+                        this_connection[0]._jsPlumb.paintStyle.strokeStyle = "#00ff00";
+                        this_connection[0]._jsPlumb.paintStyleInUse.strokeStyle = "#00ff00";
+                        this_connection[0].repaint();
+                    }else{
+                        var this_connection = jsPlumb.getConnections({
+                                                    target:id
+                                                });
+                        this_connection[0]._jsPlumb.paintStyle.strokeStyle = "#ff0000";
+                        this_connection[0]._jsPlumb.paintStyleInUse.strokeStyle = "#ff0000";
+                        this_connection[0].repaint();
+                    };
+                    
+                });
+            };
+        });
+        
+        function check_correct_connection(id, q){
+            var questions = JSON.parse(localStorage.Test3)["questions"];
+            
+            var correct_answer = "";
+                    
+            for (var i=0; i<questions.length; i++){
+                if(questions[i]["id"] == q){
+                    correct_answer = questions[i]["a"];
+                };
+            };
+            
+            if ( correct_answer == id ){
+                var this_connection = jsPlumb.getConnections({
+                                            target:id
+                                        });
+                this_connection[0]._jsPlumb.paintStyle.strokeStyle = "#00ff00";
+                this_connection[0].repaint();
+                this_connection[0]._jsPlumb.paintStyle.strokeStyle = "#ffffff";
+            }else{
+                var this_connection = jsPlumb.getConnections({
+                                            target:id
+                                        });
+                this_connection[0]._jsPlumb.paintStyle.strokeStyle = "#ff0000";
+                this_connection[0].repaint();
+                this_connection[0]._jsPlumb.paintStyle.strokeStyle = "#ffffff";
+            }
+            
+        };
+        
+        $('body').on('mouseup', '#reset_test_3', function(){
+            
+            var all_connections = jsPlumb.getConnections();
+            for (var c=0; c<all_connections.length; c++){
+                all_connections[c]._jsPlumb.paintStyle.strokeStyle = "#ffffff";
+                all_connections[c]._jsPlumb.paintStyleInUse.strokeStyle = "#ffffff";
+            };
+            
+            $(".T3O").each(function(){
+                var $this = $(this);
+                var id = $this.attr("id");
+
+                jsPlumb.detachAllConnections(id);
+                
+                $("#"+id).data("answer", "");
+                $("#"+id).data("answered", "no");
+                
+                $("#"+id).removeClass("success");
+                $("#"+id).removeClass("error");
+                
+            });
+            
+        });
+
+        function js_plumb(){
+
+            jsPlumb.bind("ready", function() {
+
+                jsPlumb.setContainer("plumb_container");
+                
+                var exampleGreyEndpointOptionsSource = {
+                    endpoint:"Dot",
+                    paintStyle:{ radius:15, fillStyle:'#FFFFFF' },
+                    isSource:true,
+                    connector:[ "Straight" ],
+                    connectorStyle : { strokeStyle:"#FFFFFF", lineWidth : 5 },
+                    connectorOverlays:[ 
+                        [ "Arrow", { width:20, length:30, location:1, id:"" } ]
+                      ],
+                };
+                var exampleGreyEndpointOptionsTarget = {
+                    uniqueEndpoint: true,
+                    endpoint:"Rectangle",
+                    cssClass: "target_rect",
+                    paintStyle:{ width:25, height:21, fillStyle:'rgb(255, 255, 255)' },
+                    isTarget:true,
+                    connectorStyle : { strokeStyle:"#FFFFFF", lineWidth : 5 },
+                    maxConnections:1,
+                    anchor: "LeftMiddle",
+                };
+                
+                /*function get_target_endpoint_options(width, height){
+
+                    var options = {
+                        endpoint:"Rectangle",
+                        cssClass: "target_rect",
+                        paintStyle:{ width: width, height:height, fillStyle:'rgb(255, 255, 255)' },
+                        isTarget:true,
+                        connectorStyle : { strokeStyle:"#FFFFFF", lineWidth : 5 },
+                        maxConnections:1,
+                    };
+                    
+                    return options
+                };*/
+                function get_target_endpoint_options(width, height, uuid){
+
+                    var options = {
+                        endpoint:"Rectangle",
+                        cssClass: "target_rect",
+                        paintStyle:{ width: width, height:height, fillStyle:'rgb(255, 255, 255)' },
+                        isTarget:true,
+                        connectorStyle : { strokeStyle:"#FFFFFF", lineWidth : 5 },
+                        maxConnections:1,
+                        uuid: uuid,
+                    };
+                    
+                    return options
+                };
+
+                var touched_q = false;
+                var source_elem = false;
+                var target_elem = false;
+                
+                $(document).on('mouseup', function (e) {
+                    touched_q = false;
+                    $(".T3Q").removeClass("selected");
+                });
+
+                if ( $(window).width() <= 480){
+
+                    $("body").on("mouseup", ".T3Q", function(e){
+                        e.stopPropagation();
+                        touched_q = true;
+                        source_elem = $(this).attr("id");
+
+                        $(this).addClass("selected");
+
+                    });
+                    $("body").on("mouseup", ".T3O", function(e){
+                        if( touched_q ){
+                            e.stopPropagation();
+                            target_elem = $(this).attr("id");
+                            jsPlumb.connect({
+                                source: source_elem, 
+                                target: target_elem,
+                                anchors:["RightMiddle", "LeftMiddle" ],
+                                endpoints: [
+                                            [ "Dot", 
+                                                { radius: 10 }
+                                            ],
+                                             [ "Rectangle", { 
+                                              cssClass:"target_rect", 
+                                              width:30, 
+                                              height:10 
+                                              }
+                                            ]
+                                          ],
+                                endpointStyle: { fillStyle:"#FFFFFF" },
+                                overlays:[ 
+                                    [ "Arrow", { width:20, length:30, location: 1, id:"" } ]
+                                  ],
+                                connector:[ "Straight"],
+                                paintStyle: {
+                                    strokeStyle: "#FFFFFF",
+                                    lineWidth: 5
+                                },
+                            });
+                        };
+                        touched_q = false;
+                        $(".T3Q").removeClass("selected");
+                    });
+
+                }else{
+                    $(".T3Q").each(function(){
+                        var id = $(this).attr("id");
+                        jsPlumb.addEndpoint(id, {
+                            anchors:"RightMiddle",
+                            uuid: id,
+                        },
+                        exampleGreyEndpointOptionsSource);
+                    });
+                    $(".T3O").each(function(){
+                        var id = $(this).attr("id");
+
+                        jsPlumb.addEndpoint(id, {
+                            anchors:"LeftMiddle",
+                            uuid: id,
+                        }, exampleGreyEndpointOptionsTarget);
+                    
+                    });
+                };
+                
+                jsPlumb.bind("connection", function(info) {
+                    
+                    var id_q = $("#"+info.sourceId+"").attr("id");
+
+                    $("#"+info.targetId+"").data("answer", id_q);
+                    $("#"+info.targetId+"").data("answered", "yes");
+
+                    var ric = $("#ric_t3").val();
+                    var test_json = test_2;
+                    if (ric == "T"){
+                        check_correct_connection(info.targetId, id_q);
+                    };
+                    
+                });
+                
+                jsPlumb.bind("connectionDetached", function(info) {
+                    $("#"+info.targetId+"").data("answer", "");
+                    $("#"+info.targetId+"").data("answered", "no");
+                });
+
+            });
+
+        };
+
+        $('body').on('resize', '#plumb_container', function(){
+            resize_height();
+            //js_plumb();
+        });
+
+        window.addEventListener("orientationchange", updateOrientation);
+        function updateOrientation(){
+            resize_height();
+            //js_plumb();
+        };
+
+
+        var template3 = document.getElementById('test_3')
+        var target3 = document.getElementById('content3');
+        renderTemplate(template3, target3, test_3);
+
+        resize_height();// js_plumb is called within resize_height();
+
+    </script>
+    
+</body>
+
+</html>
