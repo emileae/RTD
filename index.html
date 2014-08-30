@@ -289,9 +289,6 @@
             
         };
         
-        $('body').on('touchend', '#reset_test_3', function(){
-            alert("reset");
-        });
 
         $('body').on('mouseup', '#reset_test_3', function(){
             
@@ -376,28 +373,26 @@
                 var source_elem = false;
                 var target_elem = false;
                 
-                $(document).on('mouseup', function (e) {
+                $('body').on('touchend', function (e) {
                     touched_q = false;
                     $(".T3Q").removeClass("selected");
                 });
 
-                $('body').on('touchend', '.T3Q', function(){
-                    alert("T3Q");
-                });
-
                 if ( $(window).width() <= 480){
 
-                    $("body").on("mouseup", ".T3Q", function(e){
-                        e.stopPropagation();
+                    $("body").on("touchend", ".T3Q", function(e){
+                        
                         touched_q = true;
                         source_elem = $(this).attr("id");
 
                         $(this).addClass("selected");
 
+                        e.stopPropagation();
+
                     });
-                    $("body").on("mouseup", ".T3O", function(e){
+                    $("body").on("touchend", ".T3O", function(e){
                         if( touched_q ){
-                            e.stopPropagation();
+                            
                             target_elem = $(this).attr("id");
                             jsPlumb.connect({
                                 source: source_elem, 
@@ -424,6 +419,9 @@
                                     lineWidth: 5
                                 },
                             });
+                            
+                            e.stopPropagation();
+
                         };
                         touched_q = false;
                         $(".T3Q").removeClass("selected");
