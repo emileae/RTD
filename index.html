@@ -341,19 +341,6 @@
                     anchor: "LeftMiddle",
                 };
                 
-                /*function get_target_endpoint_options(width, height){
-
-                    var options = {
-                        endpoint:"Rectangle",
-                        cssClass: "target_rect",
-                        paintStyle:{ width: width, height:height, fillStyle:'rgb(255, 255, 255)' },
-                        isTarget:true,
-                        connectorStyle : { strokeStyle:"#FFFFFF", lineWidth : 5 },
-                        maxConnections:1,
-                    };
-                    
-                    return options
-                };*/
                 function get_target_endpoint_options(width, height, uuid){
 
                     var options = {
@@ -373,7 +360,7 @@
                 var source_elem = false;
                 var target_elem = false;
                 
-                $('body').on('touchend', function (e) {
+                $(document).on('touchend', function (e) {
                     touched_q = false;
                     $(".T3Q").removeClass("selected");
                 });
