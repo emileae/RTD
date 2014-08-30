@@ -285,6 +285,10 @@
             
         };
         
+        $('body').on('touchend', '#reset_test_3', function(){
+            alert("reset");
+        });
+
         $('body').on('mouseup', '#reset_test_3', function(){
             
             var all_connections = jsPlumb.getConnections();
@@ -371,6 +375,10 @@
                 $(document).on('mouseup', function (e) {
                     touched_q = false;
                     $(".T3Q").removeClass("selected");
+                });
+
+                $('body').on('touchend', '.T3Q', function(){
+                    alert("T3Q");
                 });
 
                 if ( $(window).width() <= 480){
