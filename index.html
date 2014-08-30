@@ -197,6 +197,10 @@
 
         // sort out layout
 
+        $("body").on("touchend", function(){
+            alert("touched");
+        });
+
         function resize_height(){
             var cl = $("#column_left").outerHeight();
             var cr = $("#column_right").outerHeight();
