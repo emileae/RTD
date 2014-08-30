@@ -373,14 +373,14 @@
                 var source_elem = false;
                 var target_elem = false;
                 
-                $('body').on('touchend', function (e) {
+                $('body').on('mouseup', function (e) {
                     touched_q = false;
                     $(".T3Q").removeClass("selected");
                 });
 
                 if ( $(window).width() <= 480){
 
-                    $("body").on("touchend", ".T3Q", function(e){
+                    $("body").on("mouseup", ".T3Q", function(e){
                         
                         touched_q = true;
                         source_elem = $(this).attr("id");
@@ -390,7 +390,7 @@
                         e.stopPropagation();
 
                     });
-                    $("body").on("touchend", ".T3O", function(e){
+                    $("body").on("mouseup", ".T3O", function(e){
                         if( touched_q ){
                             
                             target_elem = $(this).attr("id");
